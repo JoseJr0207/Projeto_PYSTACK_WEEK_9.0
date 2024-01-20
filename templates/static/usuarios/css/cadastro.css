@@ -85,3 +85,17 @@
     align-items: center;
     text-align: center;
 }
+
+.link-cadastro {
+    text-decoration: underline;
+    color: rgb(141, 138, 218);
+    cursor: pointer;
+}
+
+.link-cadastro:hover {
+    color: rgb(251, 251, 251);
+}
+
+.ja-possui-cadastro {
+    text-align: center;
+}

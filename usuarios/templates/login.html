@@ -33,10 +33,11 @@
  <div class="circle c3"></div>
  </div>
 <br>
-<h3>Logar</h3>
+<h3>Acessar conta:</h3>
+<br>
+
  {% if messages %}
  {% for message in messages %}
-AULA 1 8
  <section class="alert {{message.tags}}">
  {{message}}
  </section>
@@ -51,12 +52,17 @@ AULA 1 8
  <input type="password" class="input-form" name="senha" id="" placeholder="Digite sus senha...">
  <br>
 <br>
-<input type="submit" value="Enviar" class="btn-cadastro">
+<input type="submit" value="Acessar" class="btn-cadastro">
  <br>
 <br>
 <br>
 <br>
  </form>
+ <div class="ja-possui-cadastro">
+  <span>Ainda não possui cadastro ? <a href="{% url 'cadastro' %}" class="link-cadastro">clique aqui!</a></span>
+</div>
+<br>
+<br>
  </div>
  </div>
  </div>

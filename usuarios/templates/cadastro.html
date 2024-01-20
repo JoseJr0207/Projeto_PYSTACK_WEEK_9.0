@@ -33,7 +33,9 @@
  <div class="circle c3"></div>
  </div>
 <br>
-<h3>Cadastre-se</h3>
+<h3>Cadastre-se:</h3>
+<br>
+
 {% if messages %}
    {% for message in messages %}
       <section class="alert {{message.tags}}">
@@ -51,15 +53,21 @@
  <br>
 <br>
 <label>Confirmar senha</label>
- <input type="password" class="input-form" name="confirmar_senha" id="" placeholder="Confirme sua senha">
+ <input type="password" class="input-form" name="confirmar_senha" id="" placeholder="Confirme sua senha...">
  <br>
 <br>
-<input type="submit" value="Enviar" class="btn-cadastro">
+<input type="submit" value="Cadastrar" class="btn-cadastro">
  <br>
 <br>
 <br>
 <br>
  </form>
+ <div class="ja-possui-cadastro">
+    <span>Ja possui cadastro ? <a href="{% url 'login' %}" class="link-cadastro">clique aqui!</a></span>
+ </div>
+ 
+ <br>
+ <br>
  </div>
  </div>
  </div>
