@@ -30,8 +30,10 @@
 
 .box-form {
     padding: 20px;
-    background-color: rgba(217,217,217, .05);
+    background-color: rgba(217, 217, 217, .05);
     color: white !important;
+    border-radius: 30px;
+
 }
 
 .box-circle {
@@ -60,7 +62,7 @@
 .input-form {
     background-color: #0b1526;
     padding: 10px;
-    border: none;
+    border-radius: 30px;
     border: 1px solid rgba(88, 252, 213, .4);
     color: white;
     outline: 0;
@@ -70,10 +72,16 @@
 .btn-cadastro {
     padding: 10px;
     background-color: #58fcd5;
-    border: none;
+    border-radius: 30px;
     border: 1px solid #58fcd5;
     font-size: 18px;
     font-weight: bold;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+
+.title {
+    align-items: center;
+    text-align: center;
 }

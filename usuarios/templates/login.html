@@ -43,12 +43,12 @@ AULA 1 8
  {% endfor %}
  {% endif %}
  <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
- <label>Username</label>
- <input type="text" class="input-form" name="username" id="">
+ <label>Nome</label>
+ <input type="text" class="input-form" name="username" id="" placeholder="Digite seu nome...">
  <br>
 <br>
 <label>Senha</label>
- <input type="password" class="input-form" name="senha" id="">
+ <input type="password" class="input-form" name="senha" id="" placeholder="Digite sus senha...">
  <br>
 <br>
 <input type="submit" value="Enviar" class="btn-cadastro">
