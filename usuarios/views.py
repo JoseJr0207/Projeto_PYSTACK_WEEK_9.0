@@ -5,6 +5,7 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib import auth
 
+
 def cadastro(request):
     if request.method == "GET":
         return render(request, 'cadastro.html')
@@ -14,31 +15,33 @@ def cadastro(request):
         confirmar_senha = request.POST.get('confirmar_senha')
 
         if not senha == confirmar_senha:
-            messages.add_message(request, constants.ERROR, 'senha e confirmar senha não coíncidem')
+            messages.add_message(request, constants.ERROR,
+                                 'senha e confirmar senha não coíncidem')
             return redirect('/usuarios/cadastro')
 
         user = User.objects.filter(username=username)
-        
-        if user.exists():
-             messages.add_message(request, constants.ERROR, 'usuario ja existe')
-             return redirect('/usuarios/cadastro')
 
-        try: 
+        if user.exists():
+            messages.add_message(request, constants.ERROR, 'usuario ja existe')
+            return redirect('/usuarios/cadastro')
+
+        try:
             User.objects.create_user(
                 username=username,
                 password=senha
             )
             return redirect('/usuarios/logar')
         except:
-            messages.add_message(request, constants.ERROR, 'Erro interno do servidor')
-            return redirect('/usuarios/cadastro')    
+            messages.add_message(request, constants.ERROR,
+                                 'Erro interno do servidor')
+            return redirect('/usuarios/cadastro')
 
-    return HttpResponse("Teste")    
+    return HttpResponse("Teste")
 
 
 def logar(request):
     if request.method == "GET":
-     return render( request, 'login.html')
+        return render(request, 'login.html')
     elif request.method == "POST":
         username = request.POST.get('username')
         senha = request.POST.get('senha')
@@ -50,10 +53,11 @@ def logar(request):
             messages.add_message(request, constants.SUCCESS, 'logado!')
             return redirect('/flashcard/novo_flashcard/')
         else:
-            messages.add_message(request, constants.ERROR, 'Username ou senha invalidos')
+            messages.add_message(request, constants.ERROR,
+                                 'Username ou senha invalidos')
             return redirect('/usuarios/logar/')
-        
+
+
 def logout(request):
- auth.logout(request)
- return redirect('/usuarios/logar')
-    
+    auth.logout(request)
+    return redirect('/usuarios/logar')
