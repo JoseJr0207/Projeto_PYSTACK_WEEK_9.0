@@ -18,23 +18,21 @@ def novo_flashcard(request):
         print('printando >>>>>>>>>>>>> flashcards  ', flashcards)
         print('printando >>>>>>>>>>>>> categoria_filtrar  ', categoria_filtrar)
         print('printando >>>>>>>>>>>>> dificuldade_filtrar  ', dificuldade_filtrar)
-        
-        
 
         if categoria_filtrar:
             flashcards = flashcards.filter(categoria__id=categoria_filtrar)
 
         if dificuldade_filtrar:
             flashcards = flashcards.filter(dificuldade=dificuldade_filtrar)
-        
+
         return render(
-                request,
-                'novo_flashcard.html',
-                {
-                    'categorias': categorias,
-                    'dificuldades': dificuldades,
-                    'flashcards': flashcards })
-        
+            request,
+            'novo_flashcard.html',
+            {
+                'categorias': categorias,
+                'dificuldades': dificuldades,
+                'flashcards': flashcards})
+
     elif request.method == 'POST':
         pergunta = request.POST.get('pergunta')
         resposta = request.POST.get('resposta')
@@ -42,37 +40,40 @@ def novo_flashcard(request):
         dificuldade = request.POST.get('dificuldade')
 
         if len(pergunta.strip()) == 0 or len(resposta.strip()) == 0:
-                messages.add_message(
-                    request,
-                    constants.ERROR,
-                    'Preencha os campos de pergunta e resposta')
-                return redirect('/flashcard/novo_flashcard')
+            messages.add_message(
+                request,
+                constants.ERROR,
+                'Preencha os campos de pergunta e resposta')
+            return redirect('/flashcard/novo_flashcard')
 
         flashcard = Flashcard(
-                user=request.user,
-                pergunta=pergunta,
-                resposta=resposta,
-                categoria_id=categoria,
-                dificuldade=dificuldade,
-            )
+            user=request.user,
+            pergunta=pergunta,
+            resposta=resposta,
+            categoria_id=categoria,
+            dificuldade=dificuldade,
+        )
 
     flashcard.save()
 
-    messages.add_message(request, constants.SUCCESS, 'Flashcard criado com sucesso')
-    return redirect('/flashcard/novo_flashcard')        
+    messages.add_message(request, constants.SUCCESS,
+                         'Flashcard criado com sucesso')
+    return redirect('/flashcard/novo_flashcard')
 
 
 def novo_flashcardTeste(request):
     if request.method == "GET":
         return render(request, 'novo_flashcard.html')
-    
+
+
 def deletar_flashcard(request, id):
     flashcard = Flashcard.objects.get(id=id)
     flashcard.delete()
     messages.add_message(
         request, constants.SUCCESS, 'Flashcard deletado com sucesso!'
     )
-    return redirect('/flashcard/novo_flashcard')   
+    return redirect('/flashcard/novo_flashcard')
+
 
 def iniciar_desafio(request):
     if request.method == 'GET':
@@ -120,8 +121,9 @@ def iniciar_desafio(request):
 
         desafio.save()
 
-        return redirect(f'/flashcard/desafio/{desafio.id}')
-    
+        return redirect('/flashcard/listar_desafio/')
+
+
 def listar_desafio(request):
     desafios = Desafio.objects.filter(user=request.user)
     return render(
@@ -130,4 +132,16 @@ def listar_desafio(request):
         {
             'desafios': desafios,
         },
-    )    
+    )
+    
+def desafio(request, id):
+    desafio = Desafio.objects.get(id=id)
+
+    if request.method == 'GET':
+        return render(
+            request,
+            'desafio.html',
+            {
+                'desafio': desafio,
+            },
+        )    
