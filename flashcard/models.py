@@ -19,7 +19,8 @@ class Flashcard(models.Model):
 
     def __str__(self):
         return self.pergunta
-
+    
+    @property
     def css_dificuldade(self):
         if self.dificuldade == 'F':
             return 'flashcard-facil'

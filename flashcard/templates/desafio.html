@@ -42,8 +42,8 @@
 
                           {% if not flash.respondido %}
                             <div class="responder">
-                                <a href="{% url 'responder_flashcard' flash.id %}?acertou=0&desafio.id={{desafio.id}}"><i class='bx bxs-x-square icone-vermelho'></i></a>
-                                <a href="{% url 'responder_flashcard' flash.id %}?acertou=1&desafio.id={{desafio.id}}"><i class='bx bxs-check-square icone-verde' ></i></a>
+                                <a href="{% url 'responder_flashcard' flash.id %}?acertou=0&desafio_id={{desafio.id}}"><i class='bx bxs-x-square icone-vermelho'></i></a>
+                                <a href="{% url 'responder_flashcard' flash.id %}?acertou=1&desafio_id={{desafio.id}}"><i class='bx bxs-check-square icone-verde' ></i></a>
                             </div>
                           {% else %}
                             {% if flash.acertou %}
@@ -52,11 +52,7 @@
                                 <span class="badge bg-danger">Errou</span>
                             {% endif%}
                           
-                          {% endif %} 
-                            <div class="responder">
-                                <a href=""><i class='bx bxs-x-square icone-vermelho'></i></a>
-                                <a href=""><i class='bx bxs-check-square icone-verde' ></i></a>
-                            </div>
+                          {% endif %}
                             
                             
                         </div>
@@ -72,9 +68,9 @@
             <div class="col-md">
 
                 <h3 class="fonte-secundaria">Resultado</h3>
-                <p class="fonte-p">Acertos: </p>
-                <p class="fonte-p">Erros: </p>
-                <p class="fonte-p">Faltantes: </p>
+                <p class="fonte-p">Acertos: {{acertos}}</p>
+                <p class="fonte-p">Erros: {{erros}}</p>
+                <p class="fonte-p">Faltantes: {{faltantes}}</p>
                 <br>
                 <a class="btn-cadastro btn-desafio" href="{% url 'relatorio' desafio.id %}">Relatório detalhado</a>
             </div>
